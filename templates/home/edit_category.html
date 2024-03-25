@@ -1,0 +1,25 @@
+{% extends 'layouts/main.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="site-section">
+      <div class="container">
+        <div class="row mb-5">
+
+<form method="POST">
+              <div class="row">
+                <div class="col-md-12">
+                  {% csrf_token %}
+                  {{form.as_p}}
+                  <a href="/"><input type="submit" value="Update"></a>
+                </div>
+              </div>
+</form>
+
+</div>
+</div>
+</div>
+
+
+{% endblock %}

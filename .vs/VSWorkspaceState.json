@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\cart",
+    "\\home",
+    "\\order",
+    "\\shop",
+    "\\static",
+    "\\templates",
+    "\\templates\\home",
+    "\\templates\\layouts",
+    "\\templates\\widgets"
+  ],
+  "PreviewInSolutionExplorer": false
+}

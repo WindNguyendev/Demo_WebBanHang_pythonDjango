@@ -1,0 +1,121 @@
+﻿{% extends 'layouts/main.html' %}
+{% load static %}
+{% block content %}
+
+
+    <div class="bg-light py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-0"><a href="/">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">{{detail.title}}</strong></div>
+        </div>
+      </div>
+    </div>  
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <img src="{{ detail.product_img.url }}" alt="Image" class="img-fluid">
+          </div>
+          <div class="col-md-6">
+            <h2 class="text-black">{{ detail.title }}</h2>
+            
+            <p class="mb-4">{{detail.description}}</p>
+            <p><strong class="text-primary h4">{{detail.price}} VNĐ</strong></p>
+            <!--<div class="mb-1 d-flex">
+              <label for="option-sm" class="d-flex mr-3 mb-3">
+                <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" id="option-sm" name="shop-sizes"></span> <span class="d-inline-block text-black">Small</span>
+              </label>
+              <label for="option-md" class="d-flex mr-3 mb-3">
+                <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" id="option-md" name="shop-sizes"></span> <span class="d-inline-block text-black">Medium</span>
+              </label>
+              <label for="option-lg" class="d-flex mr-3 mb-3">
+                <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" id="option-lg" name="shop-sizes"></span> <span class="d-inline-block text-black">Large</span>
+              </label>
+              <label for="option-xl" class="d-flex mr-3 mb-3">
+                <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" id="option-xl" name="shop-sizes"></span> <span class="d-inline-block text-black"> Extra Large</span>
+              </label>
+            </div> -->
+            <div class="mb-5">
+              <div class="input-group mb-3" style="max-width: 150px;">
+              <div class="input-group-prepend">
+                <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+              </div>
+              <input type="number" class="form-control text-center" value="1" min="1" id="number" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" style="width: 50px;">
+              <div class="input-group-append">
+                <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+              </div>
+            </div>
+
+
+
+           Size:  
+<input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" value="37" checked>
+<label class="btn btn-secondary" for="option1">37</label>
+
+<input type="radio" class="btn-check" name="options" id="option2" value="38" autocomplete="off">
+<label class="btn btn-secondary" for="option2">38</label>
+
+<input type="radio" class="btn-check" name="options" id="option3" value="39" autocomplete="off" >
+<label class="btn btn-secondary" for="option3">39</label>
+
+<input type="radio" class="btn-check" name="options" id="option4" value="40" autocomplete="off">
+<label class="btn btn-secondary" for="option4">40</label>
+
+<input type="radio" class="btn-check" name="options" id="option5" value="41" autocomplete="off">
+<label class="btn btn-secondary" for="option5">41</label>
+
+<input type="radio" class="btn-check" name="options" id="option6" value="42" autocomplete="off">
+<label class="btn btn-secondary" for="option6">42</label>
+
+<input type="radio" class="btn-check" name="options" id="option7" value="43" autocomplete="off">
+<label class="btn btn-secondary" for="option7">43</label>
+
+
+
+
+
+
+
+            <p><strong class="text-primary h4">Tồn Kho: {{detail.quantity_stock}}</strong></p>
+            </div>
+            <p><a href="#" class="buy-now btn btn-sm btn-primary" onclick="addCart({{detail.id}},{{user.id}},{{detail.quantity_stock}},{{quantity}})">Thêm vào giỏ hàng</a></p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section block-3 site-blocks-2 bg-light">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-7 site-section-heading text-center pt-4">
+            <h2></h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="nonloop-block-3 owl-carousel">
+              {% for p in product_Featured %}
+              <div class="item">
+                <div class="block-4 text-center">
+                  <figure class="block-4-image">
+                    <img src="{{ p.product_img.url }}" alt="Image placeholder" class="img-fluid">
+                  </figure>
+                  <div class="block-4-text p-4">
+                    <h3><a href="/home/productdetail/{{ p.id }}">{{p.title }}</a></h3>
+                    <p class="mb-0">{{ p.description }}</p>
+                    <p class="text-primary font-weight-bold">{{ p.price }}VNĐ</p>
+
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'layouts/main.html' %}
+{% load static %}
+{% block content %}
+    <div class="contaimer">
+        <div>
+        <h1>CWelcome to the shop</h1>
+        <p>You are logged in with account <strong>{{ user.username }}</strong></p>
+        
+            <a href="/" class="btn btn-primary">Back to home page</a> 
+            <a href="{% url 'logout' %}" class="btn btn-primary">Logout</a>
+            <a href="{% url 'edit_profile' %}" class="btn btn-primary">Edit profile</a>
+            
+        </div>
+    </div>
+
+{% endblock %}
+
+
+

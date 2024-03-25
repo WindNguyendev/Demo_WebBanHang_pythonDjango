@@ -1,0 +1,458 @@
+{% extends 'layouts/main.html' %}
+{% load static %}
+{% block content %}
+
+
+
+
+<div class="bg-light py-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 mb-0"><a href="/">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Quản lý nhà cung cấp</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="site-section">
+    <div class="container">
+
+      <div class="row mb-5">
+        <div class="col-md-9 order-2">
+
+          <div class="row">
+            <div class="col-md-12 mb-5">
+              <div class="float-md-left mb-4"><form action="/manager_distributor"  method="get" >
+              <span class="icon icon-search2"></span>
+              <input type="text" placeholder="Search" name="d">
+            </form></div>
+
+              
+
+              <div class="d-flex">
+                <div class="dropdown mr-1 ml-md-auto">
+                  <a href="{% url 'add_distributor' %}">
+                  
+            
+                
+                </a>
+                <a class="btn btn-primary" href="{% url 'add_distributor' %}" role="button">Thêm</a>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                    <!-- {% for o in list_category %}
+                    <a class="dropdown-item" href="\home\shop\{{o.id}}">{{ o.title }}</a>
+                    
+                    {% endfor %} -->
+                    <a class="dropdown-item" href="#">Product</a>
+                    <a class="dropdown-item" href="#">Category</a>
+                    <a class="dropdown-item" href="#">Distributor</a>
+                    <a class="dropdown-item" href="#">Oder</a>
+                  </div>
+                </div>
+                <!-- <div class="btn-group">
+                  <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuReference" data-toggle="dropdown">Reference</button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+                    <a class="dropdown-item" href="#">Relevance</a>
+                    <a class="dropdown-item" href="#">Name, A to Z</a>
+                    <a class="dropdown-item" href="#">Name, Z to A</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Price, low to high</a>
+                    <a class="dropdown-item" href="#">Price, high to low</a>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+          <div class="row mb-5">
+
+            
+              <!-- {% for p in list_product %}
+              
+            <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+              <div class="block-4 text-center border">
+                <figure class="block-4-image">
+                  
+                  <a href="shop-single.html"><img src="{{ p.product_img.url }}" alt="Image placeholder" class="img-fluid"></a>
+                </figure>
+                <div class="block-4-text p-4">
+                  <h3><a href="/home/productdetail/{{ p.id }}">{{ p.title }}</a></h3>
+                  <p class="mb-0">{{ p.description }}</p>
+                  <p class="text-primary font-weight-bold">${{ p.price }}</p>
+                </div>
+               
+              </div>
+            </div>
+          
+          {% endfor %} -->
+
+      
+        <div class="row mb-5">
+          <form class="col-md-12" method="post">
+            <div class="site-blocks-table">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th class="product-thumbnail">Tên nhà cung cấp</th>
+                    <th class="product-name">Email</th>
+                    <th class="product-price">Số điện thoại</th>
+                    <th class="product-price">Địa chỉ</th>
+                    <th class="product-price">Hành động</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- <tr>
+                    <td class="product-thumbnail">
+                      <img src="images/cloth_1.jpg" alt="Image" class="img-fluid">
+                    </td>
+                    <td class="product-name">
+                      <h2 class="h5 text-black">Top Up T-Shirt</h2>
+                    </td>
+                    <td>$49.00</td>
+                    <td>
+                      <div class="input-group mb-3" style="max-width: 120px;">
+                        <div class="input-group-prepend">
+                          <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                        </div>
+                        <input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                        <div class="input-group-append">
+                          <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                        </div>
+                      </div>
+
+                    </td>
+                    <td>$49.00</td>
+                    <td><a href="#" class="btn btn-primary btn-sm">X</a></td>
+                  </tr> -->
+                  {% for i in list_distributor %}
+                  <tr>
+  
+                    
+                    <td class="product-name">
+                      <h2 class="h5 text-black">{{ i.title }}</h2>
+                    </td>
+                    <td class="product-name">
+                      <h2 class="h5 text-black">{{ i.email }}</h2>
+                    </td>
+                    <td class="product-name">
+                      <h2 class="h5 text-black">{{ i.phone }}</h2>
+                    </td>
+                    <td class="product-name">
+                      <h2 class="h5 text-black">{{ i.address }}</h2>
+                    </td>
+      
+                  
+                    
+                    <td>
+                      <a href="{% url 'edit_distributor' i.id %}" class="btn btn-primary btn-sm">Sửa</a>
+                      <br>
+                      <br>
+                      <a href="{% url 'delete_distributor' i.id %}" class="btn btn-primary btn-sm">Xóa</a>
+
+                      
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </form>
+        </div>
+
+
+
+
+
+
+
+
+
+
+          
+            
+            <!-- <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+              <div class="block-4 text-center border">
+                <figure class="block-4-image">
+                  <a href="shop-single.html"><img src="images/shoe_1.jpg" alt="Image placeholder" class="img-fluid"></a>
+                </figure>
+                <div class="block-4-text p-4">
+                  <h3><a href="shop-single.html">Corater</a></h3>
+                  <p class="mb-0">Finding perfect products</p>
+                  <p class="text-primary font-weight-bold">$50</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+              <div class="block-4 text-center border">
+                <figure class="block-4-image">
+                  <a href="shop-single.html"><img src="images/cloth_2.jpg" alt="Image placeholder" class="img-fluid"></a>
+                </figure>
+                <div class="block-4-text p-4">
+                  <h3><a href="shop-single.html">Polo Shirt</a></h3>
+                  <p class="mb-0">Finding perfect products</p>
+                  <p class="text-primary font-weight-bold">$50</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+              <div class="block-4 text-center border">
+                <figure class="block-4-image">
+                  <a href="shop-single.html"><img src="images/cloth_3.jpg" alt="Image placeholder" class="img-fluid"></a>
+                </figure>
+                <div class="block-4-text p-4">
+                  <h3><a href="shop-single.html">T-Shirt Mockup</a></h3>
+                  <p class="mb-0">Finding perfect products</p>
+                  <p class="text-primary font-weight-bold">$50</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+              <div class="block-4 text-center border">
+                <figure class="block-4-image">
+                  <a href="shop-single.html"><img src="images/shoe_1.jpg" alt="Image placeholder" class="img-fluid"></a>
+                </figure>
+                <div class="block-4-text p-4">
+                  <h3><a href="shop-single.html">Corater</a></h3>
+                  <p class="mb-0">Finding perfect products</p>
+                  <p class="text-primary font-weight-bold">$50</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+              <div class="block-4 text-center border">
+                <figure class="block-4-image">
+                  <a href="shop-single.html"><img src="images/cloth_1.jpg" alt="Image placeholder" class="img-fluid"></a>
+                </figure>
+                <div class="block-4-text p-4">
+                  <h3><a href="shop-single.html">Tank Top</a></h3>
+                  <p class="mb-0">Finding perfect t-shirt</p>
+                  <p class="text-primary font-weight-bold">$50</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+              <div class="block-4 text-center border">
+                <figure class="block-4-image">
+                  <a href="shop-single.html"><img src="images/shoe_1.jpg" alt="Image placeholder" class="img-fluid"></a>
+                </figure>
+                <div class="block-4-text p-4">
+                  <h3><a href="shop-single.html">Corater</a></h3>
+                  <p class="mb-0">Finding perfect products</p>
+                  <p class="text-primary font-weight-bold">$50</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+              <div class="block-4 text-center border">
+                <figure class="block-4-image">
+                  <a href="shop-single.html"><img src="images/cloth_2.jpg" alt="Image placeholder" class="img-fluid"></a>
+                </figure>
+                <div class="block-4-text p-4">
+                  <h3><a href="shop-single.html">Polo Shirt</a></h3>
+                  <p class="mb-0">Finding perfect products</p>
+                  <p class="text-primary font-weight-bold">$50</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+              <div class="block-4 text-center border">
+                <figure class="block-4-image">
+                  <a href="shop-single.html"><img src="images/cloth_3.jpg" alt="Image placeholder" class="img-fluid"></a>
+                </figure>
+                <div class="block-4-text p-4">
+                  <h3><a href="shop-single.html">T-Shirt Mockup</a></h3>
+                  <p class="mb-0">Finding perfect products</p>
+                  <p class="text-primary font-weight-bold">$50</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+              <div class="block-4 text-center border">
+                <figure class="block-4-image">
+                  <a href="shop-single.html"><img src="images/shoe_1.jpg" alt="Image placeholder" class="img-fluid"></a>
+                </figure>
+                <div class="block-4-text p-4">
+                  <h3><a href="shop-single.html">Corater</a></h3>
+                  <p class="mb-0">Finding perfect products</p>
+                  <p class="text-primary font-weight-bold">$50</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+              <div class="block-4 text-center border">
+                <figure class="block-4-image">
+                  <a href="shop-single.html"><img src="images/cloth_1.jpg" alt="Image placeholder" class="img-fluid"></a>
+                </figure>
+                <div class="block-4-text p-4">
+                  <h3><a href="shop-single.html">Tank Top</a></h3>
+                  <p class="mb-0">Finding perfect t-shirt</p>
+                  <p class="text-primary font-weight-bold">$50</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+              <div class="block-4 text-center border">
+                <figure class="block-4-image">
+                  <a href="shop-single.html"><img src="images/cloth_2.jpg" alt="Image placeholder" class="img-fluid"></a>
+                </figure>
+                <div class="block-4-text p-4">
+                  <h3><a href="shop-single.html">Polo Shirt</a></h3>
+                  <p class="mb-0">Finding perfect products</p>
+                  <p class="text-primary font-weight-bold">$50</p>
+                </div>
+              </div>
+            </div> -->
+
+
+          </div>
+          <div class="row" data-aos="fade-up">
+            <div class="col-md-12 text-center">
+              <div class="site-block-27">
+                <!-- <ul>
+                  <li><a href="#">&lt;</a></li>
+                  <li class="active"><span>1</span></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                  <li><a href="#">&gt;</a></li>
+                </ul> -->
+                <span class="step-links">
+                  {% if lst_pr.has_previous %}
+                      <a href="?page=1">&laquo; first</a>
+                      <a href="?page={{ list_product.previous_page_number }}">previous</a>
+                  {% endif %}
+          
+                  <span class="current">
+                      Page {{ lst_pr.number }} of {{ lst_pr.paginator.num_pages }}.
+                  </span>
+          
+                  {% if lst_pr.has_next %}
+                      <a href="?page={{ lst_pr.next_page_number }}">next</a>
+                      .......
+                      <a href="?page={{ lst_pr.paginator.num_pages }}">last &raquo;</a>
+                  {% endif %}
+              </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 order-1 mb-5 mb-md-0">
+          <div class="border p-4 rounded mb-4">
+            <h3 class="mb-3 h6 text-uppercase text-black d-block">Quản lý</h3>
+            
+            
+           <ul class="list-unstyled mb-0">
+            
+              <li class="mb-1"><a href="{% url 'manager_product' %}" class="d-flex"><span>Tài khoản nhân viên</span> <span class="text-black ml-auto"></span></a></li>
+              <li class="mb-1"><a href="{% url 'manager_product' %}" class="d-flex"><span>Sản phẩm</span> <span class="text-black ml-auto"></span></a></li>
+
+              <li class="mb-1"><a href="{% url 'manager_category' %}" class="d-flex"><span>Loại sản phẩm</span> <span class="text-black ml-auto"></span></a></li>
+
+              <li class="mb-1"><a href="{% url 'manager_distributor' %}" class="d-flex"><span>Nhà cung cấp</span> <span class="text-black ml-auto"></span></a></li>
+
+              <li class="mb-1"><a href="{% url 'manager_order' %}" class="d-flex"><span>Đơn đặt hàng</span> <span class="text-black ml-auto"></span></a></li>
+          
+            </ul>
+           
+          
+           
+          </div>
+
+          <!-- <div class="border p-4 rounded mb-4">
+            <div class="mb-4">
+              <h3 class="mb-3 h6 text-uppercase text-black d-block">Filter by Price</h3>
+              <div id="slider-range" class="border-primary"></div>
+              <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white" disabled="" />
+            </div> -->
+
+            <!-- <div class="mb-4">
+              <h3 class="mb-3 h6 text-uppercase text-black d-block">Size</h3>
+              <label for="s_sm" class="d-flex">
+                <input type="checkbox" id="s_sm" class="mr-2 mt-1"> <span class="text-black">Small (2,319)</span>
+              </label>
+              <label for="s_md" class="d-flex">
+                <input type="checkbox" id="s_md" class="mr-2 mt-1"> <span class="text-black">Medium (1,282)</span>
+              </label>
+              <label for="s_lg" class="d-flex">
+                <input type="checkbox" id="s_lg" class="mr-2 mt-1"> <span class="text-black">Large (1,392)</span>
+              </label>
+            </div> -->
+
+            <!-- <div class="mb-4">
+              <h3 class="mb-3 h6 text-uppercase text-black d-block">Color</h3>
+              <a href="#" class="d-flex color-item align-items-center" >
+                <span class="bg-danger color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Red (2,429)</span>
+              </a>
+              <a href="#" class="d-flex color-item align-items-center" >
+                <span class="bg-success color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Green (2,298)</span>
+              </a>
+              <a href="#" class="d-flex color-item align-items-center" >
+                <span class="bg-info color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Blue (1,075)</span>
+              </a>
+              <a href="#" class="d-flex color-item align-items-center" >
+                <span class="bg-primary color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Purple (1,075)</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div> -->
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="site-section site-blocks-2">
+              <div class="row justify-content-center text-center mb-5">
+                <div class="col-md-7 site-section-heading pt-4">
+                  <h2>Categories</h2>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade" data-aos-delay="">
+                  <a class="block-2-item" href="#">
+                    <figure class="image">
+                      <img src="{% static 'images/women.jpg' %}" alt="" class="img-fluid">
+                    </figure>
+                    <div class="text">
+                      <span class="text-uppercase">Collections</span>
+                      <h3>Women</h3>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="100">
+                  <a class="block-2-item" href="#">
+                    <figure class="image">
+                      <img src="{% static 'images/children.jpg' %}" alt="" class="img-fluid">
+                    </figure>
+                    <div class="text">
+                      <span class="text-uppercase">Collections</span>
+                      <h3>Children</h3>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="200">
+                  <a class="block-2-item" href="#">
+                    <figure class="image">
+                      <img src="{% static 'images/men.jpg' %}" alt="" class="img-fluid">
+                    </figure>
+                    <div class="text">
+                      <span class="text-uppercase">Collections</span>
+                      <h3>Men</h3>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+ 
+    
+{% endblock %}

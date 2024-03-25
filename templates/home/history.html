@@ -1,0 +1,151 @@
+﻿{% extends 'layouts/main.html' %}
+{% load static %}
+{% block content %}
+{% load mathfilters %}
+
+
+    <div class="bg-light py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-0"><a href="/">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">History</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row mb-5">
+          <form class="col-md-12" method="post">
+            <div class="site-blocks-table">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th class="product-name">Tên User</th>
+                    <th class="product-price">Sản phẩm</th>
+                    <th class="product-total">Tổng giá</th>
+                    <th class="product-remove">Ngày đặt</th>
+                    <th class="product-remove">Trạng thái</th>
+                    <th class="product-remove">Hàng động</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- <tr>
+                    <td class="product-thumbnail">
+                      <img src="images/cloth_1.jpg" alt="Image" class="img-fluid">
+                    </td>
+                    <td class="product-name">
+                      <h2 class="h5 text-black">Top Up T-Shirt</h2>
+                    </td>
+                    <td>$49.00</td>
+                    <td>
+                      <div class="input-group mb-3" style="max-width: 120px;">
+                        <div class="input-group-prepend">
+                          <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                        </div>
+                        <input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                        <div class="input-group-append">
+                          <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                        </div>
+                      </div>
+
+                    </td>
+                    <td>$49.00</td>
+                    <td><a href="#" class="btn btn-primary btn-sm">X</a></td>
+                  </tr> -->
+                  {% for i in order %}
+                  <tr>
+                    
+                    
+                    <td class="product-name">
+                   
+                      <h2 class="h5 text-black">{{ i.name }}</h2>
+                    
+                    </td>
+                    <td class="product-name">
+                      {% for j in order_item%}
+                        {% if j.order.id == i.id  %}
+                      <h2 class="h5 text-black">{{ j.name_pr }} x {{ j.quantity}}</h2>
+                        {% endif %}
+                      {% endfor %}
+                    
+                    </td>
+                    <td class="product-name">
+                   
+                      <h2 class="h5 text-black">{{ i.total }}</h2>
+                    
+                    </td>
+                    <td class="product-name">
+                   
+                      <h2 class="h5 text-black">{{ i.created_at }}</h2>
+                    
+                    </td>
+                    <td class="product-name">
+                    {% if i.is_status == 0 %}
+                   
+                      <h2 class="h5 text-black">Đang chờ duyệt đơn</h2>
+
+                    {% elif i.is_status == 1 %}
+
+                      <h2 class="h5 text-black">Đang đóng gói</h2>  
+         
+                    {% elif i.is_status == 2 %}
+
+                      <h2 class="h5 text-black">Đang vận chuyển</h2>  
+                    {%elif i.is_status == 3 %}
+
+                      <h2 class="h5 text-black">Đã nhận</h2> 
+                    {%elif i.is_status == 4 %}
+
+                      <h2 class="h5 text-black">Đã hủy</h2> 
+                    {%elif i.is_status == 5 %}
+
+                      <h2 class="h5 text-black">Đã trả hàng</h2> 
+
+
+                    {%elif i.is_status == 6 %}
+
+                      <h2 class="h5 text-black">Đơn không được duyệt</h2>   
+                    {%endif%}
+
+
+
+                        
+                        
+                            
+                    
+                    
+                    </td>
+
+                    <td>
+                      {%if i.is_status == 0 %}
+                        <p><a href="#" class="buy-now btn btn-sm btn-primary" onclick="remove_order({{i.id}})">Hủy đơn</a></p>
+                        {%elif i.is_status == 2 %}
+                        <!-- <p><a href="#" class="buy-now btn btn-sm btn-primary" onclick="return_order({{i.id}})">Trả hàng</a></p> -->
+                        <h2 class="h5 text-black">Không thể hủy</h2> 
+                        {% elif i.is_status == 1 %}
+                        <p><a href="#" class="buy-now btn btn-sm btn-primary" onclick="remove_order({{i.id}})">Hủy đơn</a></p>
+                        {% else %}
+                        <h2 class="h5 text-black">Kết thúc đơn hàng</h2> 
+
+
+
+                        {%endif%}
+
+                    </td>
+                   
+                    
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </form>
+        </div>
+
+        
+
+            
+
+
+{% endblock %}
